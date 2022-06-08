@@ -34,7 +34,7 @@ jobs:
     
     # Action to get the digest...
     - name: GitOps Helm Chart Update(s)
-      uses: joshi-ashutosh/actions/productmanifest@main
+      uses: tpayne/github-actions/productmanifest@main
       env:
         API_TOKEN_GITHUB: ${{ secrets.MY_GITHUB_TOKEN }}
       with:
