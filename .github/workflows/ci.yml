@@ -13,7 +13,7 @@ jobs:
       - name: Build Docker image
         run:  |
           docker build . -f docker/Dockerfile -t ${{ secrets.DOCKERHUB_USERNAME }}/jenkinsdsl:latest
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/jenkinsdsl:late
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/jenkinsdsl:latest
       - name: Helm Push 
         uses: tpayne/github-actions/productmanifest@main
         env:
