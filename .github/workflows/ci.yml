@@ -1,19 +1,19 @@
-# This workflow will build a Java project with Maven... 
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+name: CI
 
-# Note - This action is temporary being used to help drive a GitOps trial and will be removed in the future
-
-# Updated with custom plugin/action (...)
-
-name: Java CI with Maven
-
+# Controls when the workflow will run
 on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 # The jobs...
 jobs: 
-  docker-build:
+  build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2 # Checkout the source
