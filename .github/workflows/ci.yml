@@ -20,5 +20,5 @@ jobs:
            image-list: helm:wscs-deployment:01909
            git-token: ${{ env.API_TOKEN_GITHUB }}
            registry-server: docker.io
-           docker-username: username
-           docker-passwd: passwd
+           docker-username: ashjoshi
+           docker-passwd: Koormanchal@0
