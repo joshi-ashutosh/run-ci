@@ -10,10 +10,6 @@ name: Java CI with Maven
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
-  schedule:
-    - cron: '0 0 1 * *'
 
 # The jobs...
 jobs:
