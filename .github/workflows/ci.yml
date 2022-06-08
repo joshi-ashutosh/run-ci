@@ -5,19 +5,28 @@ jobs:
      runs-on: ubuntu-latest
      name: Test action locally 
      steps:
-       - name: Helm Push 
-         uses: tpayne/github-actions/productmanifest@main
-         env:
-           API_TOKEN_GITHUB: ${{ secrets.MY_GITHUB_TOKEN }}
-           API_ACTOR_GITHUB: ${{ secrets.MY_GITHUB_ACTOR }}
-           EMAIL: "Ashutosh Joshi AJ0C107469@TechMahindra.com"
-         with:
-           gitops-repo-url: https://github.com/joshi-ashutosh/sample-repo
-           manifest-file: helm/dev/values.yaml
-           github-username: ${{ env.API_ACTOR_GITHUB }}
-           github-email: ${{ env.EMAIL }}
-           image-list: jenkinscd-framework-deployment:${{ secrets.DOCKERHUB_USERNAME }}/jenkinsdsl:latest
-           git-token: ${{ env.API_TOKEN_GITHUB }}
-           registry-server: docker.io
-           docker-username: ${{ secrets.DOCKERHUB_USERNAME }}
-           docker-password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - uses: actions/checkout@v2 # Checkout the source
+      - name: Login to DockerHub...
+        run: |
+          echo ${{ secrets.DOCKERHUB_PASSWORD }} | \
+          docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+      - name: Build Docker image
+        run:  |
+          docker build . -f docker/Dockerfile -t ${{ secrets.DOCKERHUB_USERNAME }}/jenkinsdsl:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/jenkinsdsl:late
+      - name: Helm Push 
+        uses: tpayne/github-actions/productmanifest@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.MY_GITHUB_TOKEN }}
+          API_ACTOR_GITHUB: ${{ secrets.MY_GITHUB_ACTOR }}
+          EMAIL: "Ashutosh Joshi AJ0C107469@TechMahindra.com"
+        with:
+          gitops-repo-url: https://github.com/joshi-ashutosh/sample-repo
+          manifest-file: helm/dev/values.yaml
+          github-username: ${{ env.API_ACTOR_GITHUB }}
+          github-email: ${{ env.EMAIL }}
+          image-list: jenkinscd-framework-deployment:${{ secrets.DOCKERHUB_USERNAME }}/jenkinsdsl:latest
+          git-token: ${{ env.API_TOKEN_GITHUB }}
+          registry-server: docker.io
+          docker-username: ${{ secrets.DOCKERHUB_USERNAME }}
+          docker-password: ${{ secrets.DOCKERHUB_PASSWORD }}
