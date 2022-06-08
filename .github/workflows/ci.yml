@@ -10,7 +10,7 @@ jobs:
          env:
            API_TOKEN_GITHUB: ${{ secrets.MY_GITHUB_TOKEN }}
            API_ACTOR_GITHUB: ${{ secrets.MY_GITHUB_ACTOR }}
-           EMAIL: AJ0C107469@TechMahindra.com
+           EMAIL: "Ashutosh Joshi AJ0C107469@TechMahindra.com"
          with:
            gitops-repo-url: https://github.com/joshi-ashutosh/sample-repo
            manifest-file: helm/dev/values.yaml
