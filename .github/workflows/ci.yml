@@ -41,8 +41,8 @@ jobs:
           docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
     - name: Build Docker image
       run:  |
-        docker build . -f docker/Dockerfile -t ${{ secrets.DOCKERHUB_USERNAME }}/jenkinsdsl:latest
-        docker push ${{ secrets.DOCKERHUB_USERNAME }}/jenkinsdsl:latest
+        docker build . -f docker/Dockerfile -t joshi-ashutosh/jenkinsdsl:latest
+        docker push joshi-ashutosh/jenkinsdsl:latest
     
     # Action to get the digest...
     - name: GitOps Helm Chart Update(s)
@@ -54,7 +54,7 @@ jobs:
         manifest-file: helm/dev/values.yaml
         github-username: ${{ secrets.MY_GITHUB_ACTOR }}
         github-email: ${{ secrets.MY_GITHUB_EMAIL }}
-        image-list: jenkinscd-framework-deployment:${{ secrets.DOCKERHUB_USERNAME }}/jenkinsdsl:latest
+        image-list: jenkinscd-framework-deployment:joshi-ashutosh/jenkinsdsl:latest
         git-token: ${{ secrets.MY_GITHUB_TOKEN }}
         registry-server: docker.io
         docker-username: ${{ secrets.DOCKERHUB_USERNAME }}
