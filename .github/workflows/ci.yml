@@ -17,7 +17,7 @@ jobs:
            github-username: ${{ env.API_ACTOR_GITHUB }}
            github-email: ${{ env.EMAIL }}
            image-list: helm:wscs-deployment:01909
-           github-token: ${{ env.API_TOKEN_GITHUB }}
+           git-token: ${{ env.API_TOKEN_GITHUB }}
            registry-server: docker.io
            docker-username: ${{ secrets.DOCKERHUB_USERNAME }}
            docker-password: ${{ secrets.DOCKERHUB_PASSWORD }}
