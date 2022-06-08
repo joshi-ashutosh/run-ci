@@ -34,16 +34,16 @@ jobs:
     
     # Action to get the digest...
     - name: GitOps Helm Chart Update(s)
-      uses: tpayne/github-actions/productmanifest@main
+      uses: joshi-ashutosh/actions/productmanifest@main
       env:
-        API_TOKEN_GITHUB: ${{ secrets.XGITHUB_PAT }}
+        API_TOKEN_GITHUB: ${{ secrets.MY_GITHUB_TOKEN }}
       with:
-        gitops-repo-url: https://github.com/tpayne/codefresh-csdp-samples
+        gitops-repo-url: https://github.com/joshi-ashutosh/sample-repo
         manifest-file: helm/dev/values.yaml
-        github-username: ${{ secrets.XGITHUB_USER }}
-        github-email: ${{ secrets.XGITHUB_EMAIL }}
+        github-username: ${{ secrets.MY_GITHUB_ACTOR }}
+        github-email: ${{ secrets.MY_GITHUB_EMAIL }}
         image-list: jenkinscd-framework-deployment:${{ secrets.DOCKERHUB_USERNAME }}/jenkinsdsl:latest
-        git-token: ${{ secrets.XGITHUB_PAT }}
+        git-token: ${{ secrets.MY_GITHUB_TOKEN }}
         registry-server: docker.io
         docker-username: ${{ secrets.DOCKERHUB_USERNAME }}
         docker-password: ${{ secrets.DOCKERHUB_PASSWORD }}
